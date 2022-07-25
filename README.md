@@ -14,7 +14,7 @@ Document Server (distributed as ONLYOFFICE Docs starting from v.6.0) and Nextclo
 1. Get the latest version of this repository running the command:
 
     ```
-    git clone https://github.com/ONLYOFFICE/docker-onlyoffice-nextcloud
+    git clone https://github.com/melvincv/projects-nextcloud.git
     cd docker-onlyoffice-nextcloud
     ```
 

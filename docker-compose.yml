@@ -1,36 +1,63 @@
 version: '3'
 services:
   app:
-    container_name: app-server
-    image: nextcloud:fpm
-    restart: always
+    image: nextcloud:24-fpm
+    restart: unless-stopped
     expose:
       - '80'
       - '9000'
     volumes:
-      - app_data:/var/www/html
-  onlyoffice-document-server:
-    container_name: onlyoffice-document-server
-    image: onlyoffice/documentserver:latest
-    restart: always
+      - nc_data:/var/www/html
+    depends_on:
+      - db
+      - onlyoffice-server
+    environment:
+      MYSQL_PASSWORD:
+      MYSQL_DATABASE: nextcloud
+      MYSQL_USER: nextcloud
+      MYSQL_HOST: db
+      PHP_UPLOAD_LIMIT:
+
+  db:
+    image: mariadb:10.5
+    restart: unless-stopped
+    command: --transaction-isolation=READ-COMMITTED --binlog-format=ROW
+    volumes:
+      - db_data:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD:
+      MYSQL_PASSWORD:
+      MYSQL_DATABASE: nextcloud
+      MYSQL_USER: nextcloud
+
+  onlyoffice-server:
+    image: onlyoffice/documentserver:7.1
+    restart: unless-stopped
     expose:
       - '80'
       - '443'
     volumes:
-      - document_data:/var/www/onlyoffice/Data
-      - document_log:/var/log/onlyoffice
+      - oo_data:/var/www/onlyoffice/Data
+      - oo_logs:/var/log/onlyoffice
+
   nginx:
-    container_name: nginx-server
-    image: nginx
-    restart: always
+    image: nginx:1.23
+    restart: unless-stopped
     ports:
       - 80:80
       - 443:443
     volumes:
       - ./nginx.conf:/etc/nginx/nginx.conf
-      - app_data:/var/www/html
+      - nc_data:/var/www/html
+
+  adminer:
+    image: adminer
+    restart: unless-stopped
+    ports:
+      - 10000:8080
+
 volumes:
-  document_data:
-  document_log:
-  app_data:
-  mysql_data:
+  oo_data:
+  oo_logs:
+  nc_data:
+  db_data:
