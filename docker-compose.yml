@@ -31,7 +31,7 @@ services:
       MYSQL_USER: nextcloud
 
   onlyoffice-server:
-    image: onlyoffice/documentserver:7.1
+    image: onlyoffice/documentserver-ee:7.1
     restart: unless-stopped
     expose:
       - '80'
