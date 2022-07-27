@@ -1,12 +1,12 @@
-## Document Server and Nextcloud Docker installation
+# Nextcloud with OnlyOffice Community Edition on Docker
 
-Document Server (distributed as ONLYOFFICE Docs starting from v.6.0) and Nextcloud Docker installation will install the preconfigured version of [ONLYOFFICE Document Server][2] connected to Nextcloud to your server running them in Docker containers.
+Preconfigured version of [ONLYOFFICE Document Server][2] connected to Nextcloud running in Docker containers.
 
 
 ## Requirements
 
-* The latest version of Docker (can be downloaded here: [https://docs.docker.com/engine/installation/](https://docs.docker.com/engine/installation/))
-* Docker compose (can be downloaded here: [https://docs.docker.com/compose/install/](https://docs.docker.com/compose/install/))
+* The latest version of Docker can be downloaded here: [https://docs.docker.com/engine/installation/](https://docs.docker.com/engine/installation/)
+* Docker compose can be downloaded here: [https://docs.docker.com/compose/install/](https://docs.docker.com/compose/install/)
 
 
 ## Installation
