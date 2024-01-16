@@ -1,7 +1,7 @@
 version: '3'
 services:
   app:
-    image: nextcloud:24-fpm
+    image: nextcloud:26-fpm
     restart: unless-stopped
     expose:
       - '80'
@@ -19,7 +19,7 @@ services:
       PHP_UPLOAD_LIMIT:
 
   db:
-    image: mariadb:10.5
+    image: mariadb:10.11
     restart: unless-stopped
     command: --transaction-isolation=READ-COMMITTED --binlog-format=ROW
     volumes:
@@ -31,7 +31,7 @@ services:
       MYSQL_USER: nextcloud
 
   onlyoffice-server:
-    image: onlyoffice/documentserver:7.1
+    image: onlyoffice/documentserver:7.5
     restart: unless-stopped
     expose:
       - '80'
