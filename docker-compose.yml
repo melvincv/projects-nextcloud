@@ -1,10 +1,11 @@
-version: '3'
+name: nextcloud
+
 services:
   app:
-    image: nextcloud:26-fpm
+    image: nextcloud:30
     restart: unless-stopped
     expose:
-      - '80'
+      - '8000:80'
       - '9000'
     volumes:
       - nc_data:/var/www/html
